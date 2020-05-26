@@ -1,10 +1,14 @@
-const EventEmitter = require('events') 
-const emitter = new EventEmitter()
-
-emitter.on('messageLogged', (arg) => {
-    console.log('listener called', arg)
-}) // this will not called, because we have 2 diferent EventEmitter (variabel on top)
+const EventEmitter = require('events')
 
 // load the logger module and called the log function
-const log = require('./logger')
-log('message')
+const Logger = require('./logger') // this is class
+const logger = new Logger()
+
+logger.on('messageLogged', (arg) => {
+    console.log('listener called', arg)
+})
+
+logger.log('message')
+// Return =
+// message
+// listener called { id: 1, url: 'https://' }

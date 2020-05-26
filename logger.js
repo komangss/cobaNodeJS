@@ -1,19 +1,23 @@
-const EventEmitter = require('events') 
-const emitter = new EventEmitter()
+const EventEmitter = require('events')
+
 let url = 'http://logger.io/log'
 
-function log(message) {
-    // Send an Http request
-    console.log(message)
-    
+class Logger extends EventEmitter {
+    // function log(message) { // we dont need 'function' keyword
+    //     // Send an Http request
+    //     console.log(message)
+    // }
+
+    log(message) { // this is method because all function inside class called method
+        // Send an Http request
+        console.log(message)
+
+        this.emit('messageLogged', { // use this
+            id: 1,
+            url: 'https://'
+        })
+    }
 }
 
-emitter.emit('messageLogged', { // object
-    id: 1,
-    url: 'https://'
-})
-
-// this create export object module
-
-// if we need to export just function
-module.exports = log
+// Export the class
+module.exports = Logger
