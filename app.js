@@ -1,10 +1,8 @@
-// try to access log function in logger.js
-// remember when console log the module we have an object called exports
+// var x =;
+// we have varable exports, require, module, __filename, __dirname
 
-// Load a module
-const log = require('./logger') // if in same folder // use constant because we dont want to replace the variable
-// return = function log
-
-log('Hello World')
-// Return = 
-// Hello World
+console.log(exports);
+console.log(require);
+console.log(module);
+console.log(__filename);
+console.log(__dirname);
