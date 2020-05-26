@@ -20,4 +20,4 @@ emitter.emit('messageLogged', { // object
     id: 1,
     url: 'https://'
 })
-// Return = listener called
+// Return = listener called  { id: 1, url: 'https://' }
