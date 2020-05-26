@@ -1,12 +1,32 @@
-const os = require('os')
+const fs = require('fs')
 
-let totalMemory = os.totalmem()
-let freeMemory = os.freemem()
+// look we have synchronous and asynchronous method. always use asynchronous method
 
-// template String // ES6 // use bactick so dont neeed contatination use +
-console.log(`Total Memory: ${totalMemory}`);
-console.log(`Free Memory: ${freeMemory}`);
-// Return = 
-// Total Memory: 8002883584
-// Free Memory: 3531821056
+
+const files = fs.readdirSync('./') // synchronous // return all files in current folder
+console.log(files)
+// return = 
+// [ '.git', 'app.js', 'logger.js' ]
+
+// Asynchronous
+// node will call the function (second parameter) when the asynchronous operation is completed
+// fs.readdir('./', function(err, files) { // we call this function = callback // this function have 2 parameters
+//     if (err) console.log('Error', err);
+//     else console.log('Result', files);
+// })
+// return Result [ '.git', 'app.js', 'logger.js' ]
+
+// lets say we have an error
+fs.readdir('$', function(err, files) { // we call this function = callback // this function have 2 parameters
+    if (err) console.log('Error', err);
+    else console.log('Result', files);
+})
+// return = 
+// Error [Error: ENOENT: no such file or directory, scandir 'C:\xampp\htdocs\cobaNo
+// deJS\$'] {
+//   errno: -4058,
+//   code: 'ENOENT',
+//   syscall: 'scandir',
+//   path: 'C:\\xampp\\htdocs\\cobaNodeJS\\$'
+// }
 
