@@ -11,11 +11,13 @@ const emitter = new EventEmitter() // this is object(instance of that class)
 // emit mean is = Making a noise, produce - signaling. that event has added?
 
 // Register a listener
-emitter.on('messageLogged', function() {
-    console.log('listener called')
-    
+emitter.on('messageLogged', (arg) => { // or e, or event // use arrow function // feature in ES6
+    console.log('listener called', arg)
 }) // pretty same like in jquery
 
 // Raise an event
-emitter.emit('messageLogged')
+emitter.emit('messageLogged', { // object
+    id: 1,
+    url: 'https://'
+})
 // Return = listener called
