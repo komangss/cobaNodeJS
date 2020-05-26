@@ -1,3 +1,5 @@
+const EventEmitter = require('events') 
+const emitter = new EventEmitter()
 let url = 'http://logger.io/log'
 
 function log(message) {
@@ -5,6 +7,11 @@ function log(message) {
     console.log(message)
     
 }
+
+emitter.emit('messageLogged', { // object
+    id: 1,
+    url: 'https://'
+})
 
 // this create export object module
 

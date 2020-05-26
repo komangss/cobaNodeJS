@@ -1,23 +1,10 @@
-// lot of node core functionality is based on this consept of event,
-// this A signal that something has happened
+const EventEmitter = require('events') 
+const emitter = new EventEmitter()
 
-const EventEmitter = require('events') // noted here, the first letter of every variable name is uppercase, this indicate EventEmitter is class
-
-// before we use method in EventEmitter, we need to instance the class
-const emitter = new EventEmitter() // this is object(instance of that class)
-
-// then we can use all the method in documentation in emitter
-
-// emit mean is = Making a noise, produce - signaling. that event has added?
-
-// Register a listener
-emitter.on('messageLogged', (arg) => { // or e, or event // use arrow function // feature in ES6
+emitter.on('messageLogged', (arg) => {
     console.log('listener called', arg)
-}) // pretty same like in jquery
+}) // this will not called, because we have 2 diferent EventEmitter (variabel on top)
 
-// Raise an event
-emitter.emit('messageLogged', { // object
-    id: 1,
-    url: 'https://'
-})
-// Return = listener called  { id: 1, url: 'https://' }
+// load the logger module and called the log function
+const log = require('./logger')
+log('message')
