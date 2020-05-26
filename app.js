@@ -1,32 +1,21 @@
-const fs = require('fs')
+// lot of node core functionality is based on this consept of event,
+// this A signal that something has happened
 
-// look we have synchronous and asynchronous method. always use asynchronous method
+const EventEmitter = require('events') // noted here, the first letter of every variable name is uppercase, this indicate EventEmitter is class
 
+// before we use method in EventEmitter, we need to instance the class
+const emitter = new EventEmitter() // this is object(instance of that class)
 
-const files = fs.readdirSync('./') // synchronous // return all files in current folder
-console.log(files)
-// return = 
-// [ '.git', 'app.js', 'logger.js' ]
+// then we can use all the method in documentation in emitter
 
-// Asynchronous
-// node will call the function (second parameter) when the asynchronous operation is completed
-// fs.readdir('./', function(err, files) { // we call this function = callback // this function have 2 parameters
-//     if (err) console.log('Error', err);
-//     else console.log('Result', files);
-// })
-// return Result [ '.git', 'app.js', 'logger.js' ]
+// emit mean is = Making a noise, produce - signaling. that event has added?
 
-// lets say we have an error
-fs.readdir('$', function(err, files) { // we call this function = callback // this function have 2 parameters
-    if (err) console.log('Error', err);
-    else console.log('Result', files);
-})
-// return = 
-// Error [Error: ENOENT: no such file or directory, scandir 'C:\xampp\htdocs\cobaNo
-// deJS\$'] {
-//   errno: -4058,
-//   code: 'ENOENT',
-//   syscall: 'scandir',
-//   path: 'C:\\xampp\\htdocs\\cobaNodeJS\\$'
-// }
+// Register a listener
+emitter.on('messageLogged', function() {
+    console.log('listener called')
+    
+}) // pretty same like in jquery
 
+// Raise an event
+emitter.emit('messageLogged')
+// Return = listener called
