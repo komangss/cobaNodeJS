@@ -7,5 +7,6 @@ function log(message) {
 }
 
 // this create export object module
-module.exports.log = log
-// module.exports.endPoint = url
+
+// if we need to export just function
+module.exports = log
