@@ -1,14 +1,13 @@
-const EventEmitter = require('events')
+const http = require('http')
 
-// load the logger module and called the log function
-const Logger = require('./logger') // this is class
-const logger = new Logger() // instead of using instance Event Emitter, you will use class a custom class that have defined that extend EventEmitter
+const  server = http.createServer((request, response) => {
+    if(request.url === '/') {
+        response.write('<h1>Hello Warudo</h1>')
+        response.end()
+    }
+}) // this server is event emitter
 
-logger.on('messageLogged', (arg) => {
-    console.log('listener called', arg)
-})
 
-logger.log('message')
-// Return =
-// message
-// listener called { id: 1, url: 'https://' }
+server.listen(3000) // port
+
+console.log('Listening on port 3000')
